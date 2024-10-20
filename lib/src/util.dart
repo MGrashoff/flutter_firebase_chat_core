@@ -23,6 +23,10 @@ Future<Map<String, dynamic>> fetchUser(
 }) async {
   final doc = await instance.collection(usersCollectionName).doc(userId).get();
 
+  if (doc.data() == null) {
+    return {'id': userId};
+  }
+
   final data = doc.data()!;
 
   data['createdAt'] = data['createdAt']?.millisecondsSinceEpoch;
