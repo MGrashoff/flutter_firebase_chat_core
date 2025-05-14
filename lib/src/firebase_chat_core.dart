@@ -312,13 +312,14 @@ class FirebaseChatCore {
 
     if (fu == null) return const Stream.empty();
 
-    Query collection = getFirebaseFirestore()
-        .collection(config.roomsCollectionName)
-        .where('userIds', arrayContains: fu.uid);
-
-    if (orderByUpdatedAt) {
-      collection = collection.orderBy('updatedAt', descending: true);
-    }
+    var collection = orderByUpdatedAt
+        ? getFirebaseFirestore()
+            .collection(config.roomsCollectionName)
+            .where('userIds', arrayContains: fu.uid)
+            .orderBy('updatedAt', descending: true)
+        : getFirebaseFirestore()
+            .collection(config.roomsCollectionName)
+            .where('userIds', arrayContains: fu.uid);
 
     if (fu.uid == '99999999') {
       collection = collection.limit(100);
