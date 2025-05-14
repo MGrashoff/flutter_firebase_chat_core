@@ -312,7 +312,7 @@ class FirebaseChatCore {
 
     if (fu == null) return const Stream.empty();
 
-    var collection = orderByUpdatedAt
+    final collection = orderByUpdatedAt
         ? getFirebaseFirestore()
             .collection(config.roomsCollectionName)
             .where('userIds', arrayContains: fu.uid)
@@ -320,10 +320,6 @@ class FirebaseChatCore {
         : getFirebaseFirestore()
             .collection(config.roomsCollectionName)
             .where('userIds', arrayContains: fu.uid);
-
-    if (fu.uid == '99999999') {
-      collection = collection.limit(100);
-    }
 
     return collection.snapshots().asyncMap(
           (query) => processRoomsQuery(
