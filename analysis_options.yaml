@@ -1,6 +1,5 @@
 analyzer:
   plugins:
-    - dart_code_metrics
 
 # This file configures the analyzer, which statically analyzes Dart code to
 # check for errors, warnings, and lints.
@@ -47,23 +46,3 @@ linter:
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
-
-dart_code_metrics:
-  rules:
-    - always-remove-listener
-    - avoid-unused-parameters
-    - format-comment
-    - member-ordering:
-        alphabetize: false
-        order:
-          - constructors
-          - public-fields
-          - public-getters
-          - public-setters
-          - private-fields
-          - private-getters
-          - private-setters
-          - public-methods
-          - private-methods
-    - no-boolean-literal-compare
-    - prefer-trailing-comma
